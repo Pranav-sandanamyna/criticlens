@@ -215,10 +215,15 @@ st.divider()
 st.markdown("## 🔍 Movie Lookup")
 st.markdown("Search any movie from the Top 250 to see its sentiment and longevity profile.")
 
-search_query = st.text_input(
-    "Type a movie title",
-    placeholder="e.g. The Godfather, Inception, Parasite..."
+movie_titles = [""] + sorted(df["title"].dropna().tolist())
+
+selected_movie = st.selectbox(
+    "🔍 Search a movie — type any letter to filter",
+    options=movie_titles,
+    index=0,
 )
+
+search_query = selected_movie
 
 if search_query:
     results = df[df["title"].str.contains(search_query, case=False, na=False)]
