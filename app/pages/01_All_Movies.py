@@ -26,8 +26,8 @@ st.markdown("""
 @st.cache_data
 def load_data():
     possible_paths = [
+    Path("/mount/src/criticlens/data/processed/imdb_final.csv"),
     Path("data/processed/imdb_final.csv"),
-    Path("../data/processed/imdb_final.csv"),
     Path(__file__).parent.parent / "data" / "processed" / "imdb_final.csv",
 ]
     for path in possible_paths:

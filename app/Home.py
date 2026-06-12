@@ -91,12 +91,19 @@ st.markdown("""
 # ============================================================
 @st.cache_data
 def load_data():
-    # Works both locally and on Streamlit Cloud
-    possible_paths = [
+    import os
+    
+  
+    
+   possible_paths = [
+    Path("/mount/src/criticlens/data/processed/imdb_final.csv"),
     Path("data/processed/imdb_final.csv"),
-    Path("../data/processed/imdb_final.csv"),
     Path(__file__).parent.parent / "data" / "processed" / "imdb_final.csv",
 ]
+    
+    for path in possible_paths:
+        st.write(f"Trying: {path} — exists: {path.exists()}")
+    
     for path in possible_paths:
         if path.exists():
             df = pd.read_csv(path)
@@ -105,6 +112,7 @@ def load_data():
                 df["votes"].astype(str).str.replace(",", ""), errors="coerce"
             )
             return df
+    
     st.error("Data file not found. Make sure imdb_final.csv exists in data/processed/")
     st.stop()
 
