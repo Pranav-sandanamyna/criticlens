@@ -5,3 +5,5 @@ __pycache__/
 *.csv
 *.json
 .env
+data/raw/*.gz
+data/raw/*.tsv
