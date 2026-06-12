@@ -93,9 +93,10 @@ st.markdown("""
 def load_data():
     # Works both locally and on Streamlit Cloud
     possible_paths = [
-        Path("data/processed/imdb_final.csv"),
-        Path("../data/processed/imdb_final.csv"),
-    ]
+    Path("data/processed/imdb_final.csv"),
+    Path("../data/processed/imdb_final.csv"),
+    Path(__file__).parent.parent / "data" / "processed" / "imdb_final.csv",
+]
     for path in possible_paths:
         if path.exists():
             df = pd.read_csv(path)
